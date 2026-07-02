@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horren Bestelformulier - Raamdecoratie aan Huis</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --card:#fff; --ink:#1f2937; --muted:#6b7280; --line:#111827;
+    --accent:#111827; --soft:#e5e7eb; --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+  .wrap{max-width:1180px;margin:0 auto;padding:22px}
+  header{background:var(--card);border:1px solid var(--soft);border-radius:14px;padding:18px 20px;margin-bottom:18px}
+  h1{margin:0 0 6px;font-size:24px}
+  .sub{color:var(--muted);font-size:14px}
+  .grid{display:grid;grid-template-columns:360px 1fr;gap:18px}
+  .card{background:var(--card);border:1px solid var(--soft);border-radius:14px;padding:18px}
+  label{display:block;font-weight:700;font-size:13px;margin:14px 0 6px}
+  input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:#fff}
+  textarea{min-height:90px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  button{border:0;border-radius:10px;padding:12px 14px;background:#111827;color:white;font-weight:700;cursor:pointer}
+  button.secondary{background:#6b7280}
+  button.light{background:#e5e7eb;color:#111827}
+  .preview{min-height:760px}
+  .sheet{background:white;border:1px solid #d1d5db;padding:24px;max-width:794px;margin:0 auto;color:#111827}
+  .sheet-top{display:flex;justify-content:space-between;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:18px}
+  .brand{font-weight:800;font-size:22px}
+  .title{font-weight:700;font-size:16px;color:#374151;margin-top:5px}
+  .orderbox{text-align:right;font-size:13px;line-height:1.7}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 18px}
+  .meta div{border:1px solid #d1d5db;padding:8px;font-size:12px;min-height:44px}
+  .meta b{display:block;font-size:11px;color:#6b7280;margin-bottom:4px}
+  .draw-area{display:flex;justify-content:center;align-items:center;min-height:360px;border:1px solid #d1d5db;margin:18px 0;padding:20px}
+  svg{max-width:100%;height:auto}
+  .dim{font-size:20px;font-weight:700;fill:#111827}
+  .small{font-size:15px;fill:#374151}
+  .red{fill:#b91c1c;font-weight:700}
+  .info{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .info div{border:1px solid #d1d5db;padding:10px;min-height:44px}
+  .info b{display:block;font-size:12px;color:#6b7280;margin-bottom:5px}
+  .note{border:1px solid #d1d5db;margin-top:12px;padding:10px;min-height:70px}
+  .note b{display:block;font-size:12px;color:#6b7280;margin-bottom:5px}
+  .foot{margin-top:14px;font-size:11px;color:#6b7280;text-align:center}
+  .hint{font-size:13px;color:#6b7280;margin-top:10px;line-height:1.4}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}.sheet{padding:16px}.meta,.info{grid-template-columns:1fr 1fr}}
+  @media print{
+    body{background:white}
+    header,.card:first-child,.buttons,.hint{display:none!important}
+    .wrap{padding:0;max-width:none}
+    .grid{display:block}
+    .preview{padding:0}
+    .card{border:0;padding:0}
+    .sheet{border:0;max-width:none;margin:0;padding:16mm}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Horren bestelformulier</h1>
+  <div class="sub">Basic productieformulier met duidelijke tekening, bestelmaat, kleur en sluitrichting.</div>
+</header>
+
+<div class="grid">
+  <div class="card">
+    <label>Type hor</label>
+    <select id="type">
+      <option value="single-right">Enkele plissé hordeur - opent naar rechts</option>
+      <option value="single-left">Enkele plissé hordeur - opent naar links</option>
+      <option value="double">Dubbele plissé hordeur - sluit in het midden</option>
+      <option value="top-down">Raamhor / plissé - sluit van boven naar onder</option>
+      <option value="middle-out">Raamhor / plissé - sluit vanuit het midden naar links en rechts</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label>Breedte bestelmaat (mm)</label>
+        <input id="width" type="number" value="618">
+      </div>
+      <div>
+        <label>Hoogte bestelmaat (mm)</label>
+        <input id="height" type="number" value="1513">
+      </div>
+    </div>
+
+    <label>Kleur</label>
+    <select id="color">
+      <option>Antracite</option>
+      <option>White</option>
+      <option>Black</option>
+      <option>Brown</option>
+      <option>Cream</option>
+      <option>Other</option>
+    </select>
+
+    <label>Client / Project</label>
+    <input id="client" value="Zeewolde">
+
+    <div class="row">
+      <div>
+        <label>Ordernummer</label>
+        <input id="order" placeholder="Bijv. 2026-001">
+      </div>
+      <div>
+        <label>Aantal</label>
+        <input id="qty" type="number" value="1">
+      </div>
+    </div>
+
+    <label>Opmerking</label>
+    <textarea id="notes" placeholder="Extra opmerking voor productie"></textarea>
+
+    <div class="buttons">
+      <button onclick="window.print()">Print / Opslaan als PDF</button>
+      <button class="secondary" onclick="downloadHTML()">Download formulier</button>
+      <button class="light" onclick="resetForm()">Leegmaken</button>
+    </div>
+
+    <div class="hint">
+      Tip: kies bij printen voor “Opslaan als PDF”. Dit werkt in Chrome, Edge en Safari zonder extra programma.
+    </div>
+  </div>
+
+  <div class="card preview">
+    <div class="sheet" id="sheet">
+      <div class="sheet-top">
+        <div>
+          <div class="brand">RAAMDECORATIE AAN HUIS</div>
+          <div class="title">Production order - Plissé insect screen</div>
+        </div>
+        <div class="orderbox">
+          <div><b>Order:</b> <span data-val="order"></span></div>
+          <div><b>Date:</b> <span id="date"></span></div>
+          <div><b>Qty:</b> <span data-val="qty"></span></div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div><b>Client / Project</b><span data-val="client"></span></div>
+        <div><b>Product type</b><span id="productText"></span></div>
+        <div><b>Width order size</b><span data-val="width"></span> mm</div>
+        <div><b>Height order size</b><span data-val="height"></span> mm</div>
+      </div>
+
+      <div class="draw-area" id="drawing"></div>
+
+      <div class="info">
+        <div><b>Colour</b><span data-val="color"></span></div>
+        <div><b>Closing / opening direction</b><span id="directionText"></span></div>
+      </div>
+
+      <div class="note"><b>Production notes</b><span data-val="notes"></span></div>
+      <div class="foot">All dimensions are order sizes in millimeters.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const ids = ["type","width","height","color","client","order","qty","notes"];
+ids.forEach(id => document.getElementById(id).addEventListener("input", update));
+ids.forEach(id => document.getElementById(id).addEventListener("change", update));
+
+function val(id){ return document.getElementById(id).value || ""; }
+
+function update(){
+  document.querySelectorAll("[data-val]").forEach(el=>{
+    const id = el.getAttribute("data-val");
+    el.textContent = val(id);
+  });
+  document.getElementById("date").textContent = new Date().toLocaleDateString("nl-NL");
+  const type = val("type");
+  let product = "Single plissé door";
+  let direction = "Opens right";
+  if(type === "single-left"){ product = "Single plissé door"; direction = "Opens left"; }
+  if(type === "double"){ product = "Double plissé door"; direction = "Both sides close to centre"; }
+  if(type === "top-down"){ product = "Vertical plissé window screen"; direction = "Closes from top to bottom"; }
+  if(type === "middle-out"){ product = "Horizontal double plissé window screen"; direction = "Closes from centre to left and right"; }
+  document.getElementById("productText").textContent = product;
+  document.getElementById("directionText").textContent = direction;
+  draw(type, val("width"), val("height"), val("color"));
+}
+
+function draw(type, w, h, color){
+  const drawing = document.getElementById("drawing");
+  if(type === "double"){
+    drawing.innerHTML = `
+    <svg viewBox="0 0 680 420" width="680">
+      <text x="340" y="34" text-anchor="middle" class="dim">${w} wide</text>
+      <text x="610" y="195" class="dim">${h} high</text>
+      <text x="540" y="255" class="red">Colour : ${escapeHTML(color)}</text>
+      <rect x="160" y="70" width="330" height="270" fill="none" stroke="#111827" stroke-width="5"/>
+      <line x1="325" y1="70" x2="325" y2="340" stroke="#111827" stroke-width="5"/>
+      <path d="M220 205 H285" stroke="#111827" stroke-width="8" fill="none"/>
+      <path d="M285 205 L258 187 V198 H220 V212 H258 V223 Z" fill="white" stroke="#111827" stroke-width="5"/>
+      <path d="M430 205 H365" stroke="#111827" stroke-width="8" fill="none"/>
+      <path d="M365 205 L392 187 V198 H430 V212 H392 V223 Z" fill="white" stroke="#111827" stroke-width="5"/>
+      <text x="325" y="380" text-anchor="middle" class="small">Double door - closing in centre</text>
+    </svg>`;
+  } else if(type === "top-down"){
+    drawing.innerHTML = `
+    <svg viewBox="0 0 680 420" width="680">
+      <text x="330" y="34" text-anchor="middle" class="dim">${w} wide</text>
+      <text x="560" y="205" class="dim">${h} high</text>
+      <text x="500" y="275" class="red">Colour : ${escapeHTML(color)}</text>
+      <rect x="210" y="70" width="240" height="270" fill="none" stroke="#111827" stroke-width="5"/>
+      <rect x="210" y="70" width="240" height="38" fill="#e5e7eb" stroke="#111827" stroke-width="4"/>
+      <path d="M330 130 V245" stroke="#111827" stroke-width="8" fill="none"/>
+      <path d="M330 245 L310 215 H323 V130 H337 V215 H350 Z" fill="white" stroke="#111827" stroke-width="5"/>
+      <text x="330" y="380" text-anchor="middle" class="small">Top cassette - closes downward</text>
+    </svg>`;
+  } else if(type === "middle-out"){
+    drawing.innerHTML = `
+    <svg viewBox="0 0 680 420" width="680">
+      <text x="340" y="34" text-anchor="middle" class="dim">${w} wide</text>
+      <text x="610" y="195" class="dim">${h} high</text>
+      <text x="540" y="255" class="red">Colour : ${escapeHTML(color)}</text>
+      <rect x="160" y="70" width="330" height="270" fill="none" stroke="#111827" stroke-width="5"/>
+      <line x1="325" y1="70" x2="325" y2="340" stroke="#111827" stroke-width="4" stroke-dasharray="8 8"/>
+      <path d="M325 205 H235" stroke="#111827" stroke-width="8" fill="none"/>
+      <path d="M235 205 L265 185 V198 H325 V212 H265 V225 Z" fill="white" stroke="#111827" stroke-width="5"/>
+      <path d="M325 205 H415" stroke="#111827" stroke-width="8" fill="none"/>
+      <path d="M415 205 L385 185 V198 H325 V212 H385 V225 Z" fill="white" stroke="#111827" stroke-width="5"/>
+      <text x="325" y="380" text-anchor="middle" class="small">Closes from centre to left and right</text>
+    </svg>`;
+  } else {
+    const opensRight = type === "single-right";
+    const cassetteX = opensRight ? 185 : 405;
+    const arrowPath = opensRight
+      ? `<path d="M265 205 H340" stroke="#111827" stroke-width="8" fill="none"/><path d="M340 205 L310 185 V198 H265 V212 H310 V225 Z" fill="white" stroke="#111827" stroke-width="5"/>`
+      : `<path d="M330 205 H255" stroke="#111827" stroke-width="8" fill="none"/><path d="M255 205 L285 185 V198 H330 V212 H285 V225 Z" fill="white" stroke="#111827" stroke-width="5"/>`;
+    drawing.innerHTML = `
+    <svg viewBox="0 0 680 420" width="680">
+      <text x="300" y="34" text-anchor="middle" class="dim">${w} wide</text>
+      <text x="500" y="210" class="dim">${h} high</text>
+      <text x="430" y="275" class="red">Colour : ${escapeHTML(color)}</text>
+      <rect x="185" y="70" width="220" height="270" fill="none" stroke="#111827" stroke-width="5"/>
+      <rect x="${cassetteX}" y="70" width="45" height="270" fill="#e5e7eb" stroke="#111827" stroke-width="4"/>
+      ${arrowPath}
+      <text x="295" y="380" text-anchor="middle" class="small">${opensRight ? "Cassette left - opens right" : "Cassette right - opens left"}</text>
+    </svg>`;
+  }
+}
+
+function escapeHTML(str){ return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])); }
+
+function resetForm(){
+  document.getElementById("width").value = "";
+  document.getElementById("height").value = "";
+  document.getElementById("client").value = "";
+  document.getElementById("order").value = "";
+  document.getElementById("qty").value = "1";
+  document.getElementById("notes").value = "";
+  update();
+}
+
+function downloadHTML(){
+  const blob = new Blob([document.documentElement.outerHTML], {type:"text/html"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "horren-bestelformulier.html";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+update();
+</script>
+</body>
+</html>
